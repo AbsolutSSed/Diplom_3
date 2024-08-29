@@ -43,7 +43,6 @@ public class RegisterTest {
    }
     @Before
     public void setup() {
-        // TODO: 29.08.2024 Сделать if на яндекс браузер
         switch (browser.toLowerCase()) {
             case "chrome":
                 driver = new ChromeDriver();
