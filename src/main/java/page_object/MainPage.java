@@ -22,6 +22,7 @@ public class MainPage {
     private By saucesButton = By.xpath("//span[text()='Соусы']");
     private By fillingButton = By.xpath("//span[text()='Начинки']");
     private By makeOrderButton = By.xpath("//button[text()='Оформить заказ']");
+    private By overlay = By.className("Modal_modal_overlay__x2ZCr");
     @Step("Клик по кнопке - личный кабинет")
     public void clickOnPersonalAccountButton() {
         WebElement personalAccount = driver.findElement(personalAccountButton);
