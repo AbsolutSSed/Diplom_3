@@ -21,6 +21,7 @@ public class RegisterPage {
     private By passwordInputField = By.xpath("//input[@type='password']");
     private By registerButton = By.xpath("//button[text()='Зарегистрироваться']");
     private By invalidPasswordNotification = By.xpath("//p[text()='Некорректный пароль']");
+    private final By logInButton = By.xpath("//*/div/p/a[text()='Войти']");
     @Step("Заполнение поля - имя")
     public void setNameInputField(String username) {
         WebElement nameField = driver.findElement(nameInputField);
@@ -51,5 +52,9 @@ public class RegisterPage {
     @Step("Ожидаемый URL после регистрации")
     public void waitForUrlToBe(String expectedUrl) {
         wait.until(ExpectedConditions.urlToBe(expectedUrl));
+    }
+    @Step("Нажать на кнопку - войти")
+    public void clickOnLogInButton(){
+        driver.findElement(logInButton).click();
     }
 }

@@ -65,6 +65,7 @@ public class RegisterTest {
         registerPage.setPasswordInputField(userPassword);
         registerPage.clickOnRegisterButton();
 
+
         if (isSuccess) {
             String expectedUrl = "https://stellarburgers.nomoreparties.site/login";
             registerPage.waitForUrlToBe(expectedUrl);
