@@ -16,12 +16,12 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    private By emailInputField = By.xpath("//input[@name='name']");
-    private By passwordInputField = By.xpath("//input[@type='password']");
-    private By loginButton = By.xpath("//button[text()='Войти']");
-    private By registerButton = By.xpath("//a[text()='Зарегистрироваться']");
-    private By passwordRecoveryButton = By.xpath("//a[text()='Восстановить пароль']");
-    private By constructorButton = By.xpath("//p[text()='Конструктор']");
+    private final By emailInputField = By.xpath("//input[@name='name']");
+    private final By passwordInputField = By.xpath("//input[@type='password']");
+    private final By loginButton = By.xpath("//button[text()='Войти']");
+    private final By registerButton = By.xpath("//a[text()='Зарегистрироваться']");
+    private final By passwordRecoveryButton = By.xpath("//a[text()='Восстановить пароль']");
+    private final By constructorButton = By.xpath("//p[text()='Конструктор']");
 
     @Step("Нажать на кнопку - зарегистрироваться")
     public void clickOnRegisterButton() {

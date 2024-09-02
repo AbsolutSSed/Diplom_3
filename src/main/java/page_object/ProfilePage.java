@@ -14,9 +14,9 @@ public class ProfilePage {
     public ProfilePage(WebDriver driver) {
         this.driver = driver;
     }
-    private By logOutButton = By.xpath("//button[text()='Выход']");
-    private By logoButton = By.xpath("//*[@id=\"root\"]/div/header/nav/div");
-    private By constructorButton = By.xpath("//p[text()='Конструктор']");
+    private final By logOutButton = By.xpath("//button[text()='Выход']");
+    private final By logoButton = By.xpath("//*[@id=\"root\"]/div/header/nav/div");
+    private final By constructorButton = By.xpath("//p[text()='Конструктор']");
     public void waitForOverlayInvisible() {
         List<WebElement> overlays = driver.findElements(By.cssSelector(".Modal_modal_overlay__x2ZCr"));
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.invisibilityOfAllElements(overlays));

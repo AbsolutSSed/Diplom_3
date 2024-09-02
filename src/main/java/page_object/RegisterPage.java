@@ -16,11 +16,11 @@ public class RegisterPage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
-    private By nameInputField = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[1]/div/div/input");
-    private By emailInputField = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[2]/div/div/input");
-    private By passwordInputField = By.xpath("//input[@type='password']");
-    private By registerButton = By.xpath("//button[text()='Зарегистрироваться']");
-    private By invalidPasswordNotification = By.xpath("//p[text()='Некорректный пароль']");
+    private final By nameInputField = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[1]/div/div/input");
+    private final By emailInputField = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[2]/div/div/input");
+    private final By passwordInputField = By.xpath("//input[@type='password']");
+    private final By registerButton = By.xpath("//button[text()='Зарегистрироваться']");
+    private final By invalidPasswordNotification = By.xpath("//p[text()='Некорректный пароль']");
     private final By logInButton = By.xpath("//*/div/p/a[text()='Войти']");
     @Step("Заполнение поля - имя")
     public void setNameInputField(String username) {
