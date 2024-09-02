@@ -20,10 +20,11 @@ public class MainPage {
     private By personalAccountButton = By.xpath("//*/nav/a/p[text()='Личный Кабинет']");
     private By loginInAccountButton = By.xpath("//button[text()='Войти в аккаунт']");
     private By constructorButton = By.xpath("//p[text()='Конструктор']");
-    private By bunButton = By.xpath("//span[text()='Булки']");
-    private By saucesButton = By.xpath("//span[text()='Соусы']");
-    private By fillingButton = By.xpath("//span[text()='Начинки']");
+    private By bunCategory = By.xpath("//span[text()='Булки']");
+    private By saucesCategory = By.xpath("//span[text()='Соусы']");
+    private By fillingCategory = By.xpath("//span[text()='Начинки']");
     private By makeOrderButton = By.xpath("//button[text()='Оформить заказ']");
+    private final By selectedCategory = By.xpath("//div[contains(@class,'tab_tab__1SPyG tab_tab_type_current__2BEPc')]");
 
     public void waitForOverlayInvisible() {
         List<WebElement> overlays = driver.findElements(By.cssSelector(".Modal_modal_overlay__x2ZCr"));
@@ -44,9 +45,20 @@ public class MainPage {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(makeOrderButton));
         return driver.findElement(makeOrderButton).isDisplayed();
     }
-    @Step("Проверка наличия кнопки - войти в аккаунт на главной странице")
-    public boolean logInAccountButtonIsVisible() {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(loginInAccountButton));
-        return driver.findElement(loginInAccountButton).isDisplayed();
+    @Step("Получить текст выбранного раздела")
+    public String getTextSelectedCategory(){
+        return driver.findElement(selectedCategory).getText();
+    }
+    @Step("Клик по категории - булки")
+    public void clickOnBunCategory() {
+        driver.findElement(bunCategory).click();
+    }
+    @Step("Клик по категории - начинки")
+    public void clickOnFillingCategory() {
+        driver.findElement(fillingCategory).click();
+    }
+    @Step("Клик по категории - начинки")
+    public void clickOnSaucesCategory() {
+        driver.findElement(saucesCategory).click();
     }
 }
