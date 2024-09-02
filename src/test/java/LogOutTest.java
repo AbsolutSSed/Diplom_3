@@ -2,8 +2,6 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,28 +10,17 @@ import page_object.MainPage;
 import page_object.ProfilePage;
 import user.User;
 import user.manager.UserManager;
+import util.BrowserConfig;
 
-import java.util.Arrays;
-import java.util.Collection;
-
-@RunWith(Parameterized.class)
 public class LogOutTest {
     WebDriver driver;
-    String browser;
     String email;
     String password;
 
-    @Parameterized.Parameters
-    public static Collection<String> browsers() {
-        return Arrays.asList("chrome", "firefox");
-    }
-    public LogOutTest(String browser) {
-        this.browser = browser;
-    }
-
     @Before
     public void setUp() {
-        switch (browser.toLowerCase()) {
+        String browser = BrowserConfig.getBrowser();
+        switch (browser) {
             case "chrome":
                 driver = new ChromeDriver();
                 break;

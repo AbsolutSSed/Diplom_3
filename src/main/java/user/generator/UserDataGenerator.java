@@ -21,7 +21,7 @@ public class UserDataGenerator {
     }
     public User generateUserData() {
         User user = new User(addTestSuffix(faker.internet().emailAddress()),
-                faker.dune().character(),
+                faker.internet().password(6,10),
                 addTestSuffix(faker.funnyName().name()));
         return user;
     }

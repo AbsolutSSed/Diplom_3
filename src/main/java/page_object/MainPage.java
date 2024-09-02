@@ -39,9 +39,14 @@ public class MainPage {
         WebElement loginAccount = driver.findElement(loginInAccountButton);
         loginAccount.click();
     }
-    @Step("Проверка наличия кнопки оформить заказ")
+    @Step("Проверка наличия кнопки - оформить заказ")
     public boolean makeOrderButtonIsVisible() {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(makeOrderButton));
         return driver.findElement(makeOrderButton).isDisplayed();
+    }
+    @Step("Проверка наличия кнопки - войти в аккаунт на главной странице")
+    public boolean logInAccountButtonIsVisible() {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(loginInAccountButton));
+        return driver.findElement(loginInAccountButton).isDisplayed();
     }
 }

@@ -11,9 +11,9 @@ import page_object.LoginPage;
 import page_object.MainPage;
 import page_object.RegisterPage;
 import user.generator.UserDataGenerator;
+import util.BrowserConfig;
 
 import static org.junit.Assert.assertTrue;
-
 @RunWith(Parameterized.class)
 public class RegisterTest {
     WebDriver driver;
@@ -21,29 +21,25 @@ public class RegisterTest {
     String userEmail;
     String userPassword;
     boolean isSuccess;
-    String browser;
-    public RegisterTest(String username,String userEmail,String userPassword,boolean isSuccess,String browser) {
+    public RegisterTest(String username,String userEmail,String userPassword,boolean isSuccess) {
         this.username = username;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.isSuccess = isSuccess;
-        this.browser = browser;
     }
     @Parameterized.Parameters()
     public static Object[][] userDataInsert() {
         UserDataGenerator userDataGenerator = new UserDataGenerator();
 
         return new Object[][]{
-                {userDataGenerator.generateUserName(),userDataGenerator.generateUserEmail(),userDataGenerator.generateUserPassword(10,16),true,"chrome"},
-                {userDataGenerator.generateUserName(),userDataGenerator.generateUserEmail(),userDataGenerator.generateUserPassword(0,5),false,"chrome"},
-                {userDataGenerator.generateUserName(),userDataGenerator.generateUserEmail(),userDataGenerator.generateUserPassword(10,16),true,"firefox"},
-                {userDataGenerator.generateUserName(),userDataGenerator.generateUserEmail(),userDataGenerator.generateUserPassword(0,5),false,"firefox"}
-
+                {userDataGenerator.generateUserName(),userDataGenerator.generateUserEmail(),userDataGenerator.generateUserPassword(10,16),true,},
+                {userDataGenerator.generateUserName(),userDataGenerator.generateUserEmail(),userDataGenerator.generateUserPassword(0,5),false,}
     };
    }
     @Before
     public void setup() {
-        switch (browser.toLowerCase()) {
+        String browser = BrowserConfig.getBrowser();
+        switch (browser) {
             case "chrome":
                 driver = new ChromeDriver();
                 break;
