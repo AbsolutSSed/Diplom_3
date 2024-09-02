@@ -1,6 +1,4 @@
 package page_object;
-
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class ProfilePage {
     private WebDriver driver;
@@ -15,17 +14,24 @@ public class ProfilePage {
     public ProfilePage(WebDriver driver) {
         this.driver = driver;
     }
-    private By logOutButton = By.xpath("//*/li[3]/button[text()='Выход']");
+    private By logOutButton = By.xpath("//button[text()='Выход']");
     private By logoButton = By.xpath("//*[@id=\"root\"]/div/header/nav/div");
     private By constructorButton = By.xpath("//p[text()='Конструктор']");
+    public void waitForOverlayInvisible() {
+        List<WebElement> overlays = driver.findElements(By.cssSelector(".Modal_modal_overlay__x2ZCr"));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.invisibilityOfAllElements(overlays));
+    }
     public void clickOnLogOutButton() {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(logOutButton));
-        driver.findElement(logOutButton).click();
+        waitForOverlayInvisible();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(logOutButton)).click();
     }
     public void clickOnLogo() {
-        driver.findElement(logoButton).click();
+        waitForOverlayInvisible();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(logoButton)).click();
+
     }
     public void clickOnConstructorButton() {
-        driver.findElement(constructorButton).click();
+        waitForOverlayInvisible();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(constructorButton)).click();
     }
 }

@@ -1,4 +1,5 @@
 import io.qameta.allure.junit4.DisplayName;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,7 +48,7 @@ public class TransitionTest {
             password = user.getPassword();
         }
         @Test
-        @DisplayName("Проверка перехода из личного кабинета по клику на лого сайта")
+        @DisplayName("Проверка перехода из личного кабинета по клику на конструктор")
         public void transitionFromCabinetToConstructor() {
             MainPage mainPage = new MainPage(driver);
             LoginPage loginPage = new LoginPage(driver);
@@ -60,7 +61,7 @@ public class TransitionTest {
             profilePage.clickOnConstructorButton();
         }
         @Test
-        @DisplayName("Проверка перехода из личного кабинета по клику на конструктор")
+        @DisplayName("Проверка перехода из личного кабинета по клику на лого сайта")
         public void transitionFromCabinetToLogo() {
             MainPage mainPage = new MainPage(driver);
             LoginPage loginPage = new LoginPage(driver);
@@ -71,5 +72,9 @@ public class TransitionTest {
             loginPage.clickOnLogInButton();
             mainPage.clickOnPersonalAccountButton();
             profilePage.clickOnLogo();
+        }
+    @After
+    public void tearDown() {
+            driver.quit();
         }
 }

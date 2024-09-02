@@ -1,4 +1,3 @@
-import io.qameta.allure.Issue;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
@@ -54,7 +53,7 @@ public class LogOutTest {
         MainPage mainPage = new MainPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         ProfilePage profilePage = new ProfilePage(driver);
-        mainPage.clickOnLoginAccountButton();
+        mainPage.clickOnPersonalAccountButton();
         loginPage.setEmailInputField(email);
         loginPage.setPasswordInputField(password);
         loginPage.clickOnLogInButton();
