@@ -17,13 +17,13 @@ public class MainPage {
     public MainPage(WebDriver driver) {
         this.driver = driver;
     }
-    private By personalAccountButton = By.xpath("//*/nav/a/p[text()='Личный Кабинет']");
-    private By loginInAccountButton = By.xpath("//button[text()='Войти в аккаунт']");
-    private By constructorButton = By.xpath("//p[text()='Конструктор']");
-    private By bunCategory = By.xpath("//span[text()='Булки']");
-    private By saucesCategory = By.xpath("//span[text()='Соусы']");
-    private By fillingCategory = By.xpath("//span[text()='Начинки']");
-    private By makeOrderButton = By.xpath("//button[text()='Оформить заказ']");
+    private final By personalAccountButton = By.xpath("//*/nav/a/p[text()='Личный Кабинет']");
+    private final By loginInAccountButton = By.xpath("//button[text()='Войти в аккаунт']");
+    private final By constructorButton = By.xpath("//p[text()='Конструктор']");
+    private final By bunCategory = By.xpath("//span[text()='Булки']");
+    private final By saucesCategory = By.xpath("//span[text()='Соусы']");
+    private final By fillingCategory = By.xpath("//span[text()='Начинки']");
+    private final By makeOrderButton = By.xpath("//button[text()='Оформить заказ']");
     private final By selectedCategory = By.xpath("//div[contains(@class,'tab_tab__1SPyG tab_tab_type_current__2BEPc')]");
 
     public void waitForOverlayInvisible() {
