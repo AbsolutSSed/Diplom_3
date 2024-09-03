@@ -4,25 +4,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import page_object.MainPage;
-import util.BrowserConfig;
+import pageobject.MainPage;
+import util.TestUtilities;
 
 public class ConstructorSectionTest {
     WebDriver driver;
+    TestUtilities testUtilities = new TestUtilities();
 
     @Before
     public void setUp() {
-        String browser = BrowserConfig.getBrowser();
-        switch (browser) {
-            case "chrome":
-                driver = new ChromeDriver();
-                break;
-            case "firefox":
-                driver = new FirefoxDriver();
-        }
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        driver = testUtilities.actionsBeforeTest();
     }
     @Test
     @DisplayName("Проверка перехода к категории - булки")
@@ -48,6 +39,7 @@ public class ConstructorSectionTest {
     }
     @After
     public void tearDown() {
+        //Тут не требуется вызов методов класса TestUtilities
         driver.quit();
     }
 }

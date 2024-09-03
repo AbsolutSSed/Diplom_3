@@ -1,4 +1,4 @@
-package page_object;
+package pageobject;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,8 +16,8 @@ public class RegisterPage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
-    private final By nameInputField = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[1]/div/div/input");
-    private final By emailInputField = By.xpath("//*[@id=\"root\"]/div/main/div/form/fieldset[2]/div/div/input");
+    private final By nameInputField = By.xpath("//fieldset[1]//input");
+    private final By emailInputField = By.xpath("//fieldset[2]//input");
     private final By passwordInputField = By.xpath("//input[@type='password']");
     private final By registerButton = By.xpath("//button[text()='Зарегистрироваться']");
     private final By invalidPasswordNotification = By.xpath("//p[text()='Некорректный пароль']");

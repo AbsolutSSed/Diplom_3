@@ -5,31 +5,26 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import page_object.LoginPage;
-import page_object.MainPage;
-import page_object.ProfilePage;
+import pageobject.LoginPage;
+import pageobject.MainPage;
+import pageobject.ProfilePage;
 import user.User;
 import user.manager.UserManager;
 import util.BrowserConfig;
+import util.TestUtilities;
 
 public class LogOutTest {
     WebDriver driver;
     String email;
     String password;
+    User user;
+    TestUtilities testUtilities = new TestUtilities();
 
     @Before
     public void setUp() {
-        String browser = BrowserConfig.getBrowser();
-        switch (browser) {
-            case "chrome":
-                driver = new ChromeDriver();
-                break;
-            case "firefox":
-                driver = new FirefoxDriver();
-        }
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        driver = testUtilities.actionsBeforeTest();
         UserManager userManager = new UserManager();
-        User user = userManager.createUserData();
+        user = userManager.createUserData();
         userManager.createNewUser(user);
         email = user.getEmail();
         password = user.getPassword();
@@ -50,6 +45,6 @@ public class LogOutTest {
     }
     @After
     public void tearDown() {
-        driver.quit();
+        testUtilities.actionsAfterTest(user);
     }
 }

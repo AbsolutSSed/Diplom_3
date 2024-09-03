@@ -5,13 +5,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import page_object.LoginPage;
-import page_object.MainPage;
-import page_object.RegisterPage;
+import pageobject.LoginPage;
+import pageobject.MainPage;
+import pageobject.RegisterPage;
+import user.User;
 import user.generator.UserDataGenerator;
-import util.BrowserConfig;
+import util.TestUtilities;
 
 import static org.junit.Assert.assertTrue;
 @RunWith(Parameterized.class)
@@ -21,6 +20,7 @@ public class RegisterTest {
     String userEmail;
     String userPassword;
     boolean isSuccess;
+    TestUtilities testUtilities = new TestUtilities();
     public RegisterTest(String username,String userEmail,String userPassword,boolean isSuccess) {
         this.username = username;
         this.userEmail = userEmail;
@@ -33,24 +33,16 @@ public class RegisterTest {
 
         return new Object[][]{
                 {userDataGenerator.generateUserName(),userDataGenerator.generateUserEmail(),userDataGenerator.generateUserPassword(10,16),true,},
-                {userDataGenerator.generateUserName(),userDataGenerator.generateUserEmail(),userDataGenerator.generateUserPassword(0,5),false,}
+                {userDataGenerator.generateUserName(),userDataGenerator.generateUserEmail(),userDataGenerator.generateUserPassword(1,5),false}
     };
    }
     @Before
     public void setup() {
-        String browser = BrowserConfig.getBrowser();
-        switch (browser) {
-            case "chrome":
-                driver = new ChromeDriver();
-                break;
-            case "firefox":
-                driver = new FirefoxDriver();
-        }
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        driver = testUtilities.actionsBeforeTest();
     }
     @Test
     @DisplayName("Регистрация пользователя при переходе по кнопке - личный кабинет")
-    public void RegisterTest() {
+    public void registerTest() {
         MainPage mainPage = new MainPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         RegisterPage registerPage = new RegisterPage(driver);
@@ -61,12 +53,8 @@ public class RegisterTest {
         registerPage.setPasswordInputField(userPassword);
         registerPage.clickOnRegisterButton();
 
-
         if (isSuccess) {
-            String expectedUrl = "https://stellarburgers.nomoreparties.site/login";
-            registerPage.waitForUrlToBe(expectedUrl);
-            String actualUrl = registerPage.getCurrentUrl();
-            assertTrue("Произошла ошибка - ожидаемый URL после регистрации : " + expectedUrl + " актуальный: " + actualUrl, expectedUrl.equals(actualUrl));
+            assertTrue("Кнопка - войти, не видна", loginPage.logInButtonIsVisible());
         }
         else {
             registerPage.checkPasswordErrorIsDisplayed();
@@ -74,6 +62,13 @@ public class RegisterTest {
     }
     @After
     public void tearDown() {
+        //Эта конструкция применима только к этому тесту, т.к. пользователь создается в UI, а не посредством API
+        if(isSuccess) {
+            User user = new User(userEmail, userPassword, username);
+            testUtilities.actionsAfterTest(user);
+        }
+        else {
             driver.quit();
+        }
     }
 }
