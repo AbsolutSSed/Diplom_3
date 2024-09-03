@@ -6,7 +6,4 @@ public class EnvironmentConfig {
     public String getMainPageUrl() {
         return MAIN_PAGE;
     }
-    public String getLoginPageUrl() {
-        return LOGIN_PAGE;
-    }
 }

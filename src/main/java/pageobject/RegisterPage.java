@@ -41,17 +41,9 @@ public class RegisterPage {
     public void clickOnRegisterButton() {
         driver.findElement(registerButton).click();
     }
-    @Step("Получить ссылку после регистрации")
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
-    }
     @Step("Проверить наличие ошибки")
     public void checkPasswordErrorIsDisplayed() {
         driver.findElement(invalidPasswordNotification).isDisplayed();
-    }
-    @Step("Ожидаемый URL после регистрации")
-    public void waitForUrlToBe(String expectedUrl) {
-        wait.until(ExpectedConditions.urlToBe(expectedUrl));
     }
     @Step("Нажать на кнопку - войти")
     public void clickOnLogInButton(){

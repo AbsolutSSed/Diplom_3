@@ -3,14 +3,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import pageobject.LoginPage;
 import pageobject.MainPage;
 import pageobject.ProfilePage;
 import user.User;
 import user.manager.UserManager;
-import util.BrowserConfig;
 import util.TestUtilities;
 
 import static org.junit.Assert.assertTrue;
